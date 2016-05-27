@@ -1,0 +1,29 @@
+puts "Sentence please"
+text = gets.chomp
+puts "Some words please"
+redact = gets.chomp
+
+words = text.split(" ")
+# How could you make your program take multiple, separate words to REDACT?
+redactions = redact.split(" ")
+
+#How might you make a new redacted string and save it as a variable, rather than just printing it to the console?
+new_text = ""
+
+words.each do |word|
+    # What could you do to make sure your redactor redacts a word regardless of whether it's upper case or lower case?
+    lowercase_word = word.downcase
+    a = 0
+    while a < redactions.length + 1
+        if a == redactions.length
+            new_text = new_text + "#{word} "
+            break
+        elsif lowercase_word == redactions[a]
+            new_text = new_text + "REDACTED "
+            break
+        else
+            a += 1
+        end
+    end
+end
+print new_text
