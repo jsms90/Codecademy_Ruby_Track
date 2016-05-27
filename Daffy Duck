@@ -1,0 +1,26 @@
+print "How are you?"
+user_input = gets.chomp
+modified = user_input.downcase
+
+# Add an additional if statement to re-prompt the user for input if they don't enter anything
+if user_input == ""
+    print "Come on, seriously, how are you?"
+    user_input = gets.chomp
+    modified = user_input.downcase
+    
+# Think about how you might account for words in which the letter "c" sounds like an "s"
+
+elsif modified.include? "s" or modified.include? "ce" or modified.include? "ci" or modified.include? "cy"
+    user_input.gsub!(/s/, "th")
+    user_input.gsub!(/ce/, "the")
+    user_input.gsub!(/ci/, "thi")
+    user_input.gsub!(/cy/, "thy")
+# Think about how you might preserve the user's original capitalization
+    user_input.gsub!(/S/, "Th")
+    user_input.gsub!(/Ce/, "The")
+    user_input.gsub!(/Ci/, "Thi")
+    user_input.gsub!(/Cy/, "Thy")
+    puts "Now you're Daffy: #{user_input}"
+else
+    print "You're not Daffy!!"
+end
