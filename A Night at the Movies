@@ -1,0 +1,48 @@
+movies = {
+    The_Pursuit_of_Happyness: 5
+}
+choice = "add"
+
+puts "What would you like to do?"
+choice = gets.chomp
+while choice != "add" and choice != "update" and choice != "remove" and choice != "delete"
+    puts "Stop being silly now! What would you like to do?"
+    choice = gets.chomp
+end
+
+case choice
+when "add"
+    puts "What is title of the movie you want to add?"
+    title = gets.chomp.to_sym
+    if movies[title] == nil
+        puts "Give your movie a rating from 1 to 5"
+        rating = gets.chomp.to_i
+        movies[title] = rating
+        puts "#{title} has been added!"
+    else puts "That movie already exists"
+    end
+when "update"
+    puts "What is title of the movie you want to update?"
+    title = gets.chomp.to_sym
+    if movies[title] == nil
+        puts "Error: We don't have a movie called #{title}"
+    else
+        puts "Give your movie a rating from 1 to 5"
+        rating = gets.chomp.to_i
+        movies[title] = rating
+        puts "#{title} has been updated!"
+    end
+when "display"
+    movies.each { |movie, rating|
+    puts "#{movie}: #{rating}"
+    }
+when "delete"
+    puts "What is title of the movie you want to delete?"
+    title = gets.chomp.to_sym
+    if movies[title] == nil
+        puts "Error: We don't have a movie called #{title}"
+    else
+        movies.delete(title)
+        puts "#{title} has been deleted!"
+    end
+end
